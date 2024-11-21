@@ -1,7 +1,29 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template_string
 from health_utils import calculate_bmi, calculate_bmr
 
 app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return jsonify({
+        "service": "Health Calculator Microservice",
+        "available_endpoints": [
+            {
+                "path": "/bmi",
+                "method": "POST",
+                "description": "Calculate Body Mass Index",
+                "required_params": ["height", "weight"]
+            },
+            {
+                "path": "/bmr",
+                "method": "POST", 
+                "description": "Calculate Basal Metabolic Rate",
+                "required_params": ["height", "weight", "age", "gender"]
+            }
+        ]
+    })
+
+# Vos routes existantes restent identiques...
 
 @app.route('/bmi', methods=['POST'])
 def bmi():
