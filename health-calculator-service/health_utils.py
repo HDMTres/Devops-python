@@ -17,7 +17,7 @@ def calculate_bmr(weight: float, height: float, age: int, gender: str) -> float:
         gender: Genre ('male' ou 'female')
         
     Returns:
-        float: BMR en calories par jour
+        float: BMR en csalories par jour
     """
     if gender.lower() not in ['male', 'female']:
         raise ValueError("Le genre doit être 'male' ou 'female'.")
