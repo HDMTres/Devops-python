@@ -9,11 +9,11 @@ class TestHealthUtils(unittest.TestCase):
 
     def test_calculate_bmr_male(self):
         # Valeurs modifiées pour le BMR d'un homme
-        self.assertAlmostEqual(calculate_bmr(80, 180, 30, 'male'), 1886.18, places=2)  # poids en kg, hauteur en cm
+        self.assertAlmostEqual(calculate_bmr(80, 1.80, 30, 'male'), 1886.18, places=2)  # poids en kg, hauteur en m
         
     def test_calculate_bmr_female(self):
         # Valeurs modifiées pour le BMR d'une femme
-        self.assertAlmostEqual(calculate_bmr(65, 165, 28, 'female'), 1412.67, places=2)  # poids en kg, hauteur en cm
+        self.assertAlmostEqual(calculate_bmr(65, 1.65, 28, 'female'), 1412.67, places=2)  # poids en kg, hauteur en m
 
 
 if __name__ == '__main__':
