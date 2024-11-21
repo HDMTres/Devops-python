@@ -5,39 +5,35 @@ app = Flask(__name__)
 
 @app.route('/bmi', methods=['POST'])
 def bmi():
-    data = request.get_json()
-    weight = data.get('weight')
-    height = data.get('height')
-    
-    if weight is None or height is None:
-        return jsonify({"error": "Weight and height are required."}), 400
-    
     try:
-        bmi_value = calculate_bmi(weight, height)
-        return jsonify({"bmi": bmi_value}), 200
-    except ValueError as e:
-        return jsonify({"error": str(e)}), 400
+        data = request.json
+        height = data['height']
+        weight = data['weight']
+        if height <= 0 or weight <= 0:
+            return jsonify({"error": "Height and weight must be positive numbers"}), 400
+        result = calculate_bmi(height, weight)
+        return jsonify({"bmi": result})
+    except KeyError as e:
+        return jsonify({"error": f"Missing key: {e}"}), 400
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route('/bmr', methods=['POST'])
 def bmr():
-    data = request.get_json()
-    weight = data.get('weight')
-    height = data.get('height')
-    age = data.get('age')
-    gender = data.get('gender')
-    
-    if weight is None or height is None or age is None or gender is None:
-        return jsonify({"error": "Weight, height, age, and gender are required."}), 400
-    
     try:
-        bmr_value = calculate_bmr(weight, height, age, gender)
-        return jsonify({"bmr": bmr_value}), 200
-    except ValueError as e:
-        return jsonify({"error": str(e)}), 400
-        
-@app.route('/')
-def home():
-    return "Bienvenue sur le service de calcul de santé ! Utilisez les endpoints /bmi et /bmr."
+        data = request.json
+        height = data['height']
+        weight = data['weight']
+        age = data['age']
+        gender = data['gender']
+        if height <= 0 or weight <= 0 or age <= 0:
+            return jsonify({"error": "Height, weight, and age must be positive numbers"}), 400
+        result = calculate_bmr(height, weight, age, gender)
+        return jsonify({"bmr": result})
+    except KeyError as e:
+        return jsonify({"error": f"Missing key: {e}"}), 400
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
