@@ -23,8 +23,10 @@ def calculate_bmr(weight: float, height: float, age: int, gender: str) -> float:
         raise ValueError("Le genre doit être 'male' ou 'female'.")
     
     if gender.lower() == 'male':
-        bmr = 66.5 + (13.75 * weight) + (5.003 * height) - (6.755 * age)
+        # Formule de Mifflin-St Jeor pour les hommes
+        bmr = 66.47 + (13.75 * weight) + (5.0033 * height) - (6.755 * age)
     else:
-        bmr = 655.1 + (9.563 * weight) + (1.850 * height) - (4.676 * age)
+        # Formule de Mifflin-St Jeor pour les femmes
+        bmr = 655.1 + (9.563 * weight) + (1.8496 * height) - (4.6756 * age)
     
     return round(bmr, 2)
