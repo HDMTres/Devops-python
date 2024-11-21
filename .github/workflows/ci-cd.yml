@@ -15,12 +15,15 @@ jobs:
           python-version: '3.x'
       - name: Install dependencies
         run: |
+          cd health-calculator-service
           make init
       - name: Run tests
         run: |
+          cd health-calculator-service
           make test
       - name: Build Docker image
         run: |
+          cd health-calculator-service
           make build
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
