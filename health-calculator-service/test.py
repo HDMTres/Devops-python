@@ -5,12 +5,12 @@ class TestHealthUtils(unittest.TestCase):
 
     def test_calculate_bmi(self):
         self.assertAlmostEqual(calculate_bmi(1.75, 70), 22.86, places=2)
-
+    
     def test_calculate_bmr_male(self):
-        self.assertAlmostEqual(calculate_bmr(1.75, 70, 25, 'male'), 1706.69, places=2)
-        
+        self.assertAlmostEqual(calculate_bmr(175, 70, 25, 'male'), 1706.69, places=2)
+    
     def test_calculate_bmr_female(self):
-        self.assertAlmostEqual(calculate_bmr(1.60, 60, 30, 'female'), 1384.14, places=2)
+        self.assertAlmostEqual(calculate_bmr(160, 60, 30, 'female'), 1384.14, places=2)
 
 
 if __name__ == '__main__':
