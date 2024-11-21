@@ -3,7 +3,7 @@ IMAGE_NAME=health-calculator-service
  .PHONY: init run test build clean
  init:
  @echo "Installing dependencies..."
- pip install -r requirements.txt
+ pip3 install -r requirements.txt
  run:
  @echo "Running the Flask app..."
  python app.py
