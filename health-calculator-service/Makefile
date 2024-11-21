@@ -2,9 +2,9 @@ IMAGE_NAME=health-calculator-service
 PORT=5000
 
  .PHONY: init run test build clean
- 
+
  init:
- 	@echo "Installing dependencies..."
+ 	#@echo "Installing dependencies..."
  	pip install -r requirements.txt
  run:
  	@echo "Running the Flask app..."
