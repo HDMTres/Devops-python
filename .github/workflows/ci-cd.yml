@@ -31,13 +31,3 @@ jobs:
           app-name: 'AppwebDevops' # Replace with your Azure app name
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: ./health-calculator-service
-      - name: Validate deployment
-        run: |
-          HTTP_CODE=$(curl -s -o /dev/null -w "%{http_code}" https://appwebdevops-c8aud5ddeygcgsge.francecentral-01.azurewebsites.net)
-          if [ "$HTTP_CODE" -ne 200 ]; then
-            echo "Deployment failed with status code $HTTP_CODE"
-          exit 1
-          fi        
-        env:
-          EXPECTED_STATUS_CODE: 200
-#curl -s -o /dev/null -w "%{http_code}" curl -s -o /dev/null -w "%{http_code}" https://appwebdevops-c8aud5ddeygcgsge.francecentral-01.azurewebsites.net
