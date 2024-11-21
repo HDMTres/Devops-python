@@ -1,9 +1,9 @@
-def calculate_bmi(weight: float, height: float) -> float:
+def calculate_bmi(height: float, weight: float) -> float:
     """Calculer l'Indice de Masse Corporelle (BMI).
     
     Args:
-        weight: Poids en kg
         height: Taille en mètres
+        weight: Poids en kg
         
     Returns:
         float: BMI arrondi à 2 décimales
