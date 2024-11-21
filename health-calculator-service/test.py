@@ -12,6 +12,9 @@ class TestHealthUtils(unittest.TestCase):
     def test_calculate_bmr_female(self):
         self.assertAlmostEqual(calculate_bmr(160, 60, 30, 'female'), 1384.14, places=2)
 
+    def test_calculate_bmr_kid(self):
+        self.assertAlmostEqual(calculate_bmr(120, 40, 30, 'KIDS'), 1384.14, places=2)
+
 
 if __name__ == '__main__':
     unittest.main()
