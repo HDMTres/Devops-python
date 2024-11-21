@@ -12,7 +12,7 @@ def calculate_bmr(weight: float, height: float, age: int, gender: str) -> float:
     
     Args:
         weight: Poids en kg
-        height: Taille en cm
+        height: Taille en mètres
         age: Âge en années
         gender: Genre ('male' ou 'female')
         
@@ -22,11 +22,14 @@ def calculate_bmr(weight: float, height: float, age: int, gender: str) -> float:
     if gender.lower() not in ['male', 'female']:
         raise ValueError("Le genre doit être 'male' ou 'female'.")
     
+    # Conversion de la taille de mètres en centimètres
+    height_cm = height * 100
+    
     if gender.lower() == 'male':
         # Formule de Mifflin-St Jeor pour les hommes
-        bmr = 66.47 + (13.75 * weight) + (5.0033 * height) - (6.755 * age)
+        bmr = 66.47 + (13.75 * weight) + (5.0033 * height_cm) - (6.755 * age)
     else:
         # Formule de Mifflin-St Jeor pour les femmes
-        bmr = 655.1 + (9.563 * weight) + (1.8496 * height) - (4.6756 * age)
+        bmr = 655.1 + (9.563 * weight) + (1.8496 * height_cm) - (4.6756 * age)
     
     return round(bmr, 2)
